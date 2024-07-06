@@ -10,6 +10,7 @@ int main(){
     enum fields {WORD,HINT,NUM_FIELDS};
     const int NUM_WORDS = 5;
     int scores = 0;
+
     const string WORDS[NUM_WORDS][NUM_FIELDS] = {
         {"wall", "Do you feel you're banging your head against something?"},
         {"glasses", "These might help you see the answer."},
@@ -26,10 +27,12 @@ int main(){
 
     //create jumble words
     string jumble = theWord;
+
     int length = jumble.size();
 
     for(int i = 0; i < length; i++){
         int index1 = rand() % length;
+        cout <<"index1"<< index1 <<endl;
         int index2 = rand() % length;
 
         char temp = jumble[index1];
