@@ -46,7 +46,7 @@ int main(){
             guess = toupper(guess);
         }
 
-        used += guess; //add the guess letter to used string
+        used += guess; //add the guess letter to used string                
 
         if (THE_WORD.find(guess) != string::npos)
         {
