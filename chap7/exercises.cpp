@@ -1,5 +1,4 @@
 ///// ex 1///
-
 #include<iostream>
 #include<string>
 
