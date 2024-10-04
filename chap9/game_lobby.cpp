@@ -4,6 +4,8 @@ using namespace std;
 
 class Player
 {
+
+    friend ostream & operator<<(ostream& os, const Player& p);
     public:
         Player(const string& name="");
         string GetName() const;
@@ -35,7 +37,10 @@ void Player::SetNext(Player* next)
     m_pNext = next;
 }
 
-
+ostream& operator<<(ostream&os, const Player& p)
+{
+    os << p.m_Name;
+}
 
 /// class lobby///
 
@@ -52,10 +57,12 @@ class Lobby
     
     private:
         Player* m_pHead;
+        Player* m_pTail;
 };
 
 Lobby::Lobby():
-    m_pHead(0)
+    m_pHead(0),
+    m_pTail(0)
 {}
 
 Lobby::~Lobby()
@@ -75,16 +82,24 @@ void Lobby:: AddPlayer()
     if (m_pHead == 0)
     {
         m_pHead = pNewPlayer;
+        m_pTail = pNewPlayer;
 
     }
     // else find the end of the list and add player
     else{
-        Player* pIter = m_pHead;
-        while(pIter->GetNext() != 0)
-        {
-            pIter = pIter->GetNext();
-        }
-        pIter -> SetNext(pNewPlayer);
+        /*this is when there is no tail pointer*/
+
+        // Player* pIter = m_pHead;
+        // while(pIter->GetNext() != 0)
+        // {
+        //     pIter = pIter->GetNext();
+        // }
+        // pIter -> SetNext(pNewPlayer);
+
+        /*----------------------------------------*/
+
+        m_pTail->SetNext(pNewPlayer);
+        m_pTail = pNewPlayer;
     }
 }
 
@@ -139,9 +154,12 @@ int main()
 {
     Lobby myLobby;
     int choice;
+    Player p("Shyam");
+    
 
     do
     {
+        cout << p;
         cout << myLobby;
         cout << "\nGAME LOBBY\n";
         cout << "0- Exit the program.\n";
